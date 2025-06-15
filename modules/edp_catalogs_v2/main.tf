@@ -47,7 +47,7 @@ resource "databricks_grants" "edp_catalogs_grants" {
   }
 }
 
-#######################schema creation##############################
+#######################schema creation###############################
 resource "databricks_schema" "edp_schema" {
   provider         = databricks.edp_workspace
   for_each         = toset(var.schema)
