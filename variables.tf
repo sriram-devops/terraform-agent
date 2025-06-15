@@ -17,4 +17,36 @@ variable "edp_ingestion_source_catalogs" {
       description                    = string
       dbricks_workspace_id           = list(string)
     }))
+  default = [
+    {
+      sources                        = ["edp_ingestion_source_catalogs"]
+      schema_name                    = ["edp_ingestion_source_schema"]
+      data_processing_stages         = ["edp_ingestion_source_stage"]
+      add_groups_to_catalogs         = [
+        {
+          principal  = "edp_ingestion_source_catalogs_group"
+          privileges = ["USAGE", "CREATE"]
+        },
+        {
+          principal  = "edp_ingestion_source_catalogs_group2"
+          privileges = ["USAGE", "CREATE"]
+        }
+      ]
+      add_groups_to_schemas          = [
+        {
+          schema_name= "edp_ingestion_source_schema"
+          principal  = "edp_ingestion_source_schema_group"
+          privileges = ["USAGE", "CREATE"]
+        },
+        {
+          schema_name= "edp_ingestion_source_schema2"
+          principal  = "edp_ingestion_source_schema_group2"
+          privileges = ["USAGE", "CREATE"]
+        }
+      ]
+      storage_root                   = "dbfs:/edp-ingestion-source/"
+      description                    = ""
+      dbricks_workspace_id           = ["1123"]
+    }
+  ]
 }
