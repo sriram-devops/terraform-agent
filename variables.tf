@@ -50,3 +50,17 @@ variable "edp_ingestion_source_catalogs" {
     }
   ]
 }
+
+variable "schema" {
+  type = list(string)
+  default = [
+    {
+      name = "edp_ingestion_source_schema"
+      description = "Schema for EDP Ingestion Source"
+    },
+    {
+      name = "edp_ingestion_source_schema2"
+      description = "Schema for EDP Ingestion Source 2"
+    }
+  ]
+} 
